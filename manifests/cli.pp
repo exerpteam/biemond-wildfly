@@ -14,7 +14,6 @@ define wildfly::cli(
   String $command          = $title,
   Optional[String] $unless = undef,
   Optional[String] $onlyif = undef,
-  Optional[Boolean] $refreshonly = undef,
   String $username         = $wildfly::mgmt_user['username'],
   String $password         = $wildfly::mgmt_user['password'],
   String $host             = $wildfly::properties['jboss.bind.address.management'],
@@ -22,15 +21,14 @@ define wildfly::cli(
 ) {
 
   wildfly_cli { $title:
-    command     => $command,
-    username    => $username,
-    password    => $password,
-    host        => $host,
-    port        => $port,
-    unless      => $unless,
-    onlyif      => $onlyif,
-    refreshonly => $refreshonly,
-    require     => Service['wildfly'],
+    command  => $command,
+    username => $username,
+    password => $password,
+    host     => $host,
+    port     => $port,
+    unless   => $unless,
+    onlyif   => $onlyif,
+    require  => Service['wildfly'],
   }
 
 }
